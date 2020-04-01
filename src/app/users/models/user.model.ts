@@ -1,5 +1,12 @@
+import { Repository } from './repositories.model';
+
 export interface User {
-    id: number;
     login: string;
     avatar_url: string;
-}   
+}
+
+export interface SelectedUser extends User {
+    followers: User[];
+    following: User[];
+    repositories: Repository[];
+}

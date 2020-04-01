@@ -15,11 +15,26 @@ export const loadUsersFail = createAction(
 )
 
 export const setListQuery = createAction(
-    '[users] SET_LIST_QUERY',
+    '[users] - SET_LIST_QUERY',
     props<{ query: string }>()
 )
 
 export const setListPaging = createAction(
-    '[users] SET_LIST_PAGE',
+    '[users] - SET_LIST_PAGE',
     props<{ paging: Paging }>()
+)
+
+export const loadUser = createAction(
+    '[users] - LOAD_USER',
+    props<{ username: string }>()
+);
+
+export const loadUserSuccess = createAction(
+    '[users] - LOAD_USER_SUCCESS',
+    props<{ user: User }>()
+);
+
+export const loadUserFail = createAction(
+    '[users] - LOAD_USER_FAIL',
+    props<{ error: Error }>()
 )

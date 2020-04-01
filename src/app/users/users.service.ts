@@ -7,6 +7,7 @@ import { ListConfig } from './+store';
 @Injectable()
 export class UsersService {
 
+
   constructor(private apiService: ApiService) { }
 
   query(config: ListConfig): Observable<{ items: User[], total_count: number }> {
@@ -18,4 +19,8 @@ export class UsersService {
     return this.apiService.get<{ items: User[], total_count: number }>(`search/users?${ApiService.toHttpParams(query)}`);
   }
 
+  getUser(username: string): Observable<User> {
+    console.log(username)
+    return this.apiService.get<User>(`users/${username}`);
+  }
 }

@@ -13,13 +13,19 @@ import { RouterModule } from '@angular/router';
 import { DetailsComponent } from './containers/details/details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { FollowersComponent } from './containers/details/followers/followers.component';
+import { FollowingComponent } from './containers/details/following/following.component';
+import { RepositoriesComponent } from './containers/details/repositories/repositories.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
     DetailsComponent,
-    UserListComponent
+    UserListComponent,
+    FollowersComponent,
+    FollowingComponent,
+    RepositoriesComponent
   ],
   imports: [
     CommonModule,

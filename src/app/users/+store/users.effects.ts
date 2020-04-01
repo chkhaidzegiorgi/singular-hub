@@ -46,4 +46,21 @@ export class UsersEffects {
             )
         )
     );
+
+    loadUser$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UserActions.loadUser),
+            withLatestFrom(this.facade.selectedUsername$),
+            switchMap(([_, username]) =>
+                this.usersService.getUser(username).pipe(
+                    map(result =>
+                        UserActions.loadUserSuccess({
+                            user: result
+                        }),
+                    ),
+                    catchError(error => of(UserActions.loadUserFail({ error }))),
+                )
+            )
+        )
+    );
 }

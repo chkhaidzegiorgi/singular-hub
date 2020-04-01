@@ -1,9 +1,10 @@
-import { User } from '../models/user.model';
+import { User, SelectedUser } from '../models/user.model';
 import { createReducer, on, Action } from '@ngrx/store';
 import * as UserActions from './users.actions';
 import { Paging } from 'src/app/shared/models/paging.model';
 
 export interface UsersState {
+    readonly selectedUser: SelectedUser;
     readonly users: UserList;
     readonly config: ListConfig;
 }
@@ -16,6 +17,13 @@ export const initialState: UsersState = {
     config: {
         paging: { page: 1, limit: 30 },
         query: ''
+    },
+    selectedUser: {
+        avatar_url: '',
+        login: '',
+        followers: [],
+        following: [],
+        repositories: []
     }
 }
 
@@ -64,6 +72,29 @@ const reducer = createReducer(
             total: 0
         };
         return { ...state, users };
+    }),
+    on(UserActions.loadUser, (state: UsersState, action) => {
+        return { ...state };
+    }),
+    on(UserActions.loadUserSuccess, (state: UsersState, action) => {
+        const selectedUser = {
+            ...state.selectedUser,
+            avatar_url: action.user.avatar_url,
+            login: action.user.login
+        };
+
+        return { ...state, selectedUser };
+    }),
+    on(UserActions.loadUserFail, (state: UsersState, action) => {
+        const selectedUser = {
+            avatar_url: '',
+            followers: [],
+            following: [],
+            repositories: [],
+            login: ''
+        };
+
+        return { ...state, selectedUser };
     })
 );
 

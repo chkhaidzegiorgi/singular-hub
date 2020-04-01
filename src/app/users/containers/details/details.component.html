@@ -1,4 +1,33 @@
 <div class="wrapper">
 
-    
+    <button mat-icon-button class="mr-16" [routerLink]="'/users'">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="content">
+
+        <div class="user-info">
+            <ng-container *ngIf="user$ | async as user">
+                <img class="avatar" [src]="user.avatar_url" alt="avatar - {{user.login}}" />
+                <span class="text-truncate">{{user.login}} </span>
+            </ng-container>
+        </div>
+
+        <div class="more-info">
+            <mat-tab-group>
+                <mat-tab label="Followers">
+                    <app-followers [username]="username"></app-followers>
+                </mat-tab>
+
+                <mat-tab label="Following">
+                    <app-following [username]="username"></app-following>
+                </mat-tab>
+
+                <mat-tab label="Repositories">
+                    <app-repositories [username]="username"></app-repositories>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+
 </div>

@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { UsersState } from './users.reducer';
 import { Store, select } from '@ngrx/store';
-import { userListQuery } from './users.selectors';
+import * as usersQuery from './users.selectors';
 import { loadUsers } from './users.actions';
 import * as userActions from './users.actions';
 import { Paging } from 'src/app/shared/models/paging.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class UsersFacade {
 
-    users$ = this.store.select(userListQuery.getUsers);
-    config$ = this.store.select(userListQuery.getConfig);
-    paging$ = this.store.select(userListQuery.getPaging);
-    total$ = this.store.select(userListQuery.getUsersCount);
+    users$ = this.store.select(usersQuery.getUsers);
+    config$ = this.store.select(usersQuery.getConfig);
+    paging$ = this.store.select(usersQuery.getPaging);
+    total$ = this.store.select(usersQuery.getUsersCount);
+    selectedUser$ = this.store.select(usersQuery.getSelectedUser);
+    selectedUsername$: Observable<string>;
 
     constructor(private store: Store<UsersState>) { }
 
@@ -26,5 +29,10 @@ export class UsersFacade {
 
     setQuery(query: string) {
         this.store.dispatch(userActions.setListQuery({ query }));
+    }
+
+    loadUser(username: string): void {
+        this.selectedUsername$ = of(username);
+        this.store.dispatch(userActions.loadUser({ username }));
     }
 }
