@@ -24,7 +24,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   get<T>(url: string, params: HttpParams = new HttpParams()): Observable<T> {
-    return this.http.get<T>(`${environment.api_url}${url}`, {
+    return this.http.get<T>(`${environment.api_url}/${url}`, {
       headers: this.headers,
       params,
     });

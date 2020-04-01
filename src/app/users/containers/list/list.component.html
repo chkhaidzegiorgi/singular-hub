@@ -1,1 +1,6 @@
-<p>list works!</p>
+<div>users list</div>
+<div *ngFor="let user of users$ | async">
+    <span>
+        {{user.login}}
+    </span>
+</div>

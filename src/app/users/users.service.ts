@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiService } from '../core/services';
+import { User } from './models/user.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UsersService {
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
+
+  query(): Observable<User[]> {
+    return this.apiService.get<User[]>('users?per_page=20');
+  }
+
 }

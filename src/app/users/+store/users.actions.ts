@@ -5,7 +5,7 @@ export const loadUsers = createAction('[users] LOAD_USERS');
 
 export const loadUsersSuccess = createAction(
     '[users] - LOAD_USERS_SUCCESS',
-    props<{ users: User[] }>()
+    props<{ entities: User[] }>()
 )
 
 export const loadUsersFail = createAction(
