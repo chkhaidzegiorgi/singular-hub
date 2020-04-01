@@ -10,7 +10,8 @@ import { Paging } from 'src/app/shared/models/paging.model';
 export class UsersFacade {
 
     users$ = this.store.select(userListQuery.getUsers);
-    configs$ = this.store.select(userListQuery.getConfig);
+    config$ = this.store.select(userListQuery.getConfig);
+    paging$ = this.store.select(userListQuery.getPaging);
     total$ = this.store.select(userListQuery.getUsersCount);
 
     constructor(private store: Store<UsersState>) { }

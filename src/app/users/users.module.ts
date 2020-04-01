@@ -12,10 +12,15 @@ import { MaterialModule } from '../shared';
 import { RouterModule } from '@angular/router';
 import { DetailsComponent } from './containers/details/details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 
 @NgModule({
-  declarations: [ListComponent, DetailsComponent],
+  declarations: [
+    ListComponent,
+    DetailsComponent,
+    UserListComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

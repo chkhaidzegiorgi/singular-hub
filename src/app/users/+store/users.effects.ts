@@ -32,7 +32,7 @@ export class UsersEffects {
     loadArticles$ = createEffect(() =>
         this.actions$.pipe(
             ofType(UserActions.loadUsers),
-            withLatestFrom(this.facade.configs$),
+            withLatestFrom(this.facade.config$),
             switchMap(([_, config]) =>
                 this.usersService.query(config).pipe(
                     map(results =>

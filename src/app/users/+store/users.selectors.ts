@@ -13,13 +13,20 @@ export const getUsersCount = createSelector(
     (state: UsersState) => state.users.total
 )
 
+export const getPaging = createSelector(
+    getUserList,
+    (state: UsersState) => state.config.paging
+)
+
 export const getConfig = createSelector(
     getUserList,
     (state: UsersState) => state.config
 )
 
+
 export const userListQuery = {
     getUsers,
+    getPaging,
     getConfig,
     getUsersCount
 }

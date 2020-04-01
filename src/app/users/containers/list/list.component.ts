@@ -10,7 +10,6 @@ import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent implements OnInit, OnDestroy {
@@ -19,36 +18,24 @@ export class ListComponent implements OnInit, OnDestroy {
 
   unsubscribe$: Subject<void> = new Subject();
 
-  displayedColumns: string[] = ['username'];
   users$: Observable<User[]>;
   total$: Observable<number>;
-  configs$: Observable<ListConfig>;
+  paging$: Observable<Paging>;
 
   constructor(private facade: UsersFacade) { }
 
   ngOnInit(): void {
     this.domListeners();
     this.initialize();
-    this.load();
   }
 
   initialize(): void {
     this.users$ = this.facade.users$;
-    this.configs$ = this.facade.configs$;
+    this.paging$ = this.facade.paging$;
     this.total$ = this.facade.total$;
   }
 
-
-  load(): void {
-    this.facade.load();
-  }
-
-  setPage(page?: PageEvent): void {
-    const paging: Paging = {
-      page: page.pageIndex + 1,
-      limit: page.pageSize
-    };
-
+  setPage(paging: Paging): void {
     this.facade.setPage(paging);
   }
 

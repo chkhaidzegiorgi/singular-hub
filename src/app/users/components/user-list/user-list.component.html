@@ -1,0 +1,28 @@
+<ng-container *ngIf="users$ | async as users">
+    <mat-table #table [dataSource]="users">
+
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+            <mat-cell *matCellDef="let record">
+
+                <div class="username">
+                    <img class="avatar" [src]="record.avatar_url" alt="avatar - {{record.login}}" />
+                    <span class="text-truncate">{{record.login}} </span>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+        <mat-row *matRowDef="let record; columns: displayedColumns;" [routerLink]="['/users',record.id]" matRipple>
+        </mat-row>
+
+    </mat-table>
+</ng-container>
+
+<ng-container *ngIf="paging$ | async as paging">
+    <ng-container *ngIf="total$ | async as total">
+        <mat-paginator [length]="total" [pageSize]="paging.limit" (page)="onSetPage($event)">
+        </mat-paginator>
+    </ng-container>
+</ng-container>
