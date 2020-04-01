@@ -1,4 +1,23 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  .wrapper {
+    padding: 24px;
+  }
+  .search-container {
+    margin-bottom: 24px;
+    text-align: center;;
+    input.search {
+      font-size: 20px;;
+    }
+  }
+}
