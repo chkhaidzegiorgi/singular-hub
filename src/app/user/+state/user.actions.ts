@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { User, Paging, Repository } from 'src/app/shared';
+import { User, Paging } from 'src/app/shared';
+import { Repository } from '../models/repositories.model';
 
 export const loadUser = createAction(
     '[user] - LOAD_USER',

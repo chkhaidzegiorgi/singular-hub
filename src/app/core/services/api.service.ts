@@ -49,7 +49,7 @@ export class ApiService {
   get headers(): HttpHeaders {
     const headersConfig = {
       'Content-Type': 'application/json',
-      'Authorization': 'token 505a45ad2231d088ade8b1b92ed3808923d94233',
+    //  'Authorization': 'token 505a45ad2231d088ade8b1b92ed3808923d94233',
       Accept: 'application/json',
     };
 

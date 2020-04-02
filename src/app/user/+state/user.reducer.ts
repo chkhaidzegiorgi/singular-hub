@@ -1,6 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { User, Repository, List } from 'src/app/shared';
+import { User, List } from 'src/app/shared';
 import * as UserActions from './user.actions';
+import { Repository } from '../models/repositories.model';
 
 export interface UserState {
     readonly login: string;

@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
-import { Repository, Paging } from 'src/app/shared';
+import {  Paging } from 'src/app/shared';
 import { ListBaseComponent } from 'src/app/core/components';
 import { UserFacade } from '../../+state';
 import { PageEvent } from '@angular/material/paginator';
+import { Repository } from '../../models/repositories.model';
 
 @Component({
   selector: 'app-repositories',

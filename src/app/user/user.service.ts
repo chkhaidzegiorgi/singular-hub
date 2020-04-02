@@ -5,7 +5,7 @@ import { Paging } from '../shared/models/paging.model';
 import { map } from 'rxjs/operators';
 import { User } from '../shared/models/user.model';
 import { QueryListFor } from '../shared/models/list.model';
-import { Repository } from '../shared';
+import { Repository } from './models/repositories.model';
 
 @Injectable()
 export class UserService {
