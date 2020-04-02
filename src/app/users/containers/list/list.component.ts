@@ -1,28 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { UsersFacade, ListConfig, UserList } from '../../+store';
-import { Observable, Subject } from 'rxjs';
-import { User } from '../../models/user.model';
-import { PageEvent } from '@angular/material/paginator';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UsersFacade } from '../../+state';
 import { FormControl } from '@angular/forms';
 import { Paging } from 'src/app/shared/models/paging.model';
 import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
+import { ListBaseComponent } from 'src/app/core/components';
+import { User } from 'src/app/shared';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent extends ListBaseComponent<User> implements OnInit {
 
   searchInput: FormControl = new FormControl('');
 
-  unsubscribe$: Subject<void> = new Subject();
-
-  users$: Observable<User[]>;
-  total$: Observable<number>;
-  paging$: Observable<Paging>;
-
-  constructor(private facade: UsersFacade) { }
+  constructor(private facade: UsersFacade) { super(); }
 
   ngOnInit(): void {
     this.domListeners();
@@ -30,7 +23,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   initialize(): void {
-    this.users$ = this.facade.users$;
+    this.entities$ = this.facade.entities$;
     this.paging$ = this.facade.paging$;
     this.total$ = this.facade.total$;
   }
@@ -52,11 +45,6 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe((value: string) => {
         this.setQuery(value);
       });
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
 }

@@ -1,0 +1,32 @@
+<ng-container *ngIf="entities$ | async as entities">
+    <mat-table #table [dataSource]="entities">
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let record">
+                <span class="text-truncate">{{record.name}} </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastPush">
+            <mat-header-cell *matHeaderCellDef>Last Push</mat-header-cell>
+            <mat-cell *matCellDef="let record">
+                <span class="text-truncate">{{record.pushed_at | date:'medium'}} </span>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+        <mat-row *matRowDef="let record; columns: displayedColumns;" [routerLink]="['/repository',record.name]" matRipple>
+        </mat-row>
+
+    </mat-table>
+</ng-container>
+
+<ng-container *ngIf="paging$ | async as paging">
+    <ng-container *ngIf="total$ | async as total">
+        <mat-paginator [length]="total" [pageIndex]="paging.page - 1" [pageSize]="paging.limit"
+            (page)="setPage($event)">
+        </mat-paginator>
+    </ng-container>
+</ng-container>

@@ -10,6 +10,7 @@ import { CoreModule } from './core';
 import { UsersModule } from './users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { UserModule } from './user';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
 
     CoreModule,
     UsersModule,
+    UserModule,
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([])

@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../core/services';
-import { User } from './models/user.model';
-import { ListConfig } from './+store';
+import { UserListConfig } from './+state';
+import { map } from 'rxjs/operators';
+import { User, QueryListFor } from '../shared';
 
 @Injectable()
 export class UsersService {
 
+  private readonly resourceUri = 'search/users';
 
   constructor(private apiService: ApiService) { }
 
-  query(config: ListConfig): Observable<{ items: User[], total_count: number }> {
+  query(config: UserListConfig): Observable<QueryListFor<User>> {
     const query = {
       q: config.query,
       page: config.paging.page,
       page_per: config.paging.limit
     };
-    return this.apiService.get<{ items: User[], total_count: number }>(`search/users?${ApiService.toHttpParams(query)}`);
-  }
 
-  getUser(username: string): Observable<User> {
-    console.log(username)
-    return this.apiService.get<User>(`users/${username}`);
+    return this.apiService
+      .getWithHeaders(`${this.resourceUri}?${ApiService.toHttpParams(query)}`)
+      .pipe(
+        map(res => ApiService.mapQueryListFor(res, res.body.items))
+      );
   }
 }

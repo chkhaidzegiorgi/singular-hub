@@ -4,6 +4,6 @@
         <input [formControl]="searchInput" class="search" placeholder="Type Query">
     </div>
 
-    <app-user-list [users$]="users$" [paging$]="paging$" [total$]="total$" (setPage)="setPage($event)"></app-user-list>
+    <app-user-list [users$]="entities$" [paging$]="paging$" [total$]="total$" (setPage)="setPage($event)"></app-user-list>
 
 </div>
