@@ -44,7 +44,6 @@ export class UserService {
       );
   }
 
-
   getRepositories(username: string, paging: Paging): Observable<QueryListFor<Repository>> {
     const query = {
       page: paging.page,

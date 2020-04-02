@@ -17,7 +17,7 @@
 
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
 
-        <mat-row *matRowDef="let record; columns: displayedColumns;" [routerLink]="['/repository',record.name]" matRipple>
+        <mat-row *matRowDef="let record; columns: displayedColumns;" [routerLink]="['repos',record.name]" matRipple>
         </mat-row>
 
     </mat-table>

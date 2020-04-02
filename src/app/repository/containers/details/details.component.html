@@ -1,0 +1,18 @@
+<div class="wrapper">
+
+    <button mat-icon-button class="mr-16" [routerLink]="['/users', username]">
+        <mat-icon>arrow_back</mat-icon>
+
+
+    </button>
+
+    <h4>Repository Name: {{username}}/{{repo}}</h4>
+
+    <div class="content">
+
+        <h3>Contributors:</h3>
+
+        <app-contributors [username]="username" [repo]="repo"></app-contributors>
+
+    </div>
+</div>

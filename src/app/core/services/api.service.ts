@@ -39,7 +39,7 @@ export class ApiService {
 
   static getLastPage(links: LinkHeaders): number {
     if (!links.last) {
-      throw new Error('invalid argument, last link not provided');
+      return 1;
     }
     const url = new URL(links.last);
     const params = new URLSearchParams(url.search);

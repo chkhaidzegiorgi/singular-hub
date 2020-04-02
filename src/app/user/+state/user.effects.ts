@@ -11,7 +11,7 @@ export class UserEffects {
 
     constructor(
         private actions$: Actions,
-        private usersService: UserService,
+        private userService: UserService,
         private facade: UserFacade
     ) { }
 
@@ -19,7 +19,7 @@ export class UserEffects {
         this.actions$.pipe(
             ofType(UserActions.loadUser),
             switchMap((action) =>
-                this.usersService.getUser(action.username).pipe(
+                this.userService.getUser(action.username).pipe(
                     map(result =>
                         UserActions.loadUserSuccess({
                             user: result
@@ -44,7 +44,7 @@ export class UserEffects {
             ofType(UserActions.loadFollowers),
             withLatestFrom(this.facade.followers.config$),
             switchMap(([action, config]) =>
-                this.usersService.getFollowers(action.username, config.paging).pipe(
+                this.userService.getFollowers(action.username, config.paging).pipe(
                     map(result =>
                         UserActions.loadFollowersSuccess({
                             entities: result.entities,
@@ -70,7 +70,7 @@ export class UserEffects {
             ofType(UserActions.loadFollowing),
             withLatestFrom(this.facade.following.config$),
             switchMap(([action, config]) =>
-                this.usersService.getFollowings(action.username, config.paging).pipe(
+                this.userService.getFollowings(action.username, config.paging).pipe(
                     map(result =>
                         UserActions.loadFollowingSuccess({
                             entities: result.entities,
@@ -96,7 +96,7 @@ export class UserEffects {
             ofType(UserActions.loadRepositories),
             withLatestFrom(this.facade.repositories.config$),
             switchMap(([action, config]) =>
-                this.usersService.getRepositories(action.username, config.paging).pipe(
+                this.userService.getRepositories(action.username, config.paging).pipe(
                     map(result =>
                         UserActions.loadRepositoriesSuccess({
                             entities: result.entities,

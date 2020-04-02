@@ -9,8 +9,12 @@ const routes: Routes = [
     loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
   },
   {
-    path: 'user/:username',
+    path: 'users/:username',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'users/:username/repos/:repo',
+    loadChildren: () => import('./repository/repository.module').then(m => m.RepositoryModule)
   }
 ];
 
